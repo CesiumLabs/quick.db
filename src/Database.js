@@ -299,14 +299,16 @@ class Database {
     }
 
     push(key, valueLike, options = {}) {
+        const has = this.has(key, options);
+        if (!has) return this.set(key, !Array.isArray(valueLike) ? [valueLike] : valueLike, options);
+
         const data = this.get(key, options);
-        if (!data) return this.set(key, !Array.isArray(valueLike) ? [valueLike] : valueLike, options);
         if (!Array.isArray(data)) throw new TypeError("Cannot use push with non-array type");
         if (Array.isArray(valueLike)) {
             const n = data.concat(valueLike);
             return this.set(key, n, options);
         }
-        const res = [];
+        const res = [...data];
         res.push(valueLike);
         return this.set(key, res, options);
     }
