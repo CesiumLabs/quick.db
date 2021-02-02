@@ -1,6 +1,6 @@
 {
   "name": "@devsnowflake/quick.db",
-  "version": "1.0.0-dev",
+  "version": "1.0.2-dev",
   "description": "The hackable quick.db",
   "main": "index.js",
   "scripts": {

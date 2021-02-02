@@ -4,6 +4,4 @@ const db = new Database("json.sqlite", {
     table: "json"
 });
 
-db.prototype.table = db.createTable;
-
-module.exports = db;
+module.exports = () => db;

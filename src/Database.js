@@ -146,7 +146,7 @@ class Database {
 
         if (typeof parsed === "object" && target) {
             parsed = lodash.get(parsed, target);
-        } else if (target) throw new Error("Cannot use target with non-object");
+        }
 
         return parsed;
     }
@@ -264,7 +264,7 @@ class Database {
             data = lodash.unset(data, target);
             data = JSON.stringify(data);
 
-            this.database.prepare(`UPDATE ${table} SET json = (?) WHERE ID = (?)`).run(fetched, id);
+            this.database.prepare(`UPDATE ${table} SET json = (?) WHERE ID = (?)`).run(data, id);
 
             return true;
         } else if (target) throw new Error("Cannot use target with non-object");
@@ -299,16 +299,16 @@ class Database {
     }
 
     push(key, valueLike, options = {}) {
-        const data = this.has(key, options);
+        const data = this.get(key, options);
         if (!data) return this.set(key, !Array.isArray(valueLike) ? [valueLike] : valueLike, options);
-
         if (!Array.isArray(data)) throw new TypeError("Cannot use push with non-array type");
         if (Array.isArray(valueLike)) {
             const n = data.concat(valueLike);
             return this.set(key, n, options);
         }
-
-        return this.set(key, data.push(valueLike), options);
+        const res = [];
+        res.push(valueLike);
+        return this.set(key, res, options);
     }
 
     pull(key, itemLike, options = {}) {

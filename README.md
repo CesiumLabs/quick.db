@@ -59,7 +59,7 @@ for (const item of statement.iterate()) {
 This db behaves like quick.db where you cannot specify custom path/default table while creating your database.
 
 ```js
-const db = require("@devsnowflake/quick.db").static;
+const db = require("@devsnowflake/quick.db").static();
 
 db.set("foo", "bar");
 
