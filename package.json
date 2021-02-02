@@ -1,0 +1,28 @@
+{
+  "name": "@devsnowflake/quick.db",
+  "version": "1.0.0-dev",
+  "description": "The hackable quick.db",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd test && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevSnowflake/quick.db.git"
+  },
+  "keywords": [
+    "quick.db",
+    "database",
+    "sqlite"
+  ],
+  "author": "Snowflake107",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/DevSnowflake/quick.db/issues"
+  },
+  "homepage": "https://github.com/DevSnowflake/quick.db#readme",
+  "dependencies": {
+    "better-sqlite3": "^7.1.2",
+    "lodash": "^4.17.20"
+  }
+}
