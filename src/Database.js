@@ -546,7 +546,7 @@ class Database {
     }
 
     toJSON(options) {
-        return JSON.stringify(this.all(options));
+        return this.all(options);
     }
 
     tables() {
