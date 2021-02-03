@@ -323,8 +323,8 @@ class Database {
         return this.set(key, data.filter(x => !itemLike.includes(x)), options);
     }
 
-    startsWith(key, options = {}) {        
-        let data = this.filter(i => i.ID.startsWith(key), options);
+    startsWith(key, ops = {}) {        
+        let data = this.filter(i => i.ID.startsWith(key), ops);
         if (ops && typeof ops.sort === "string") {
             if (ops.sort.startsWith(".")) ops.sort = ops.sort.slice(1);
             ops.sort = ops.sort.split(".");
@@ -334,8 +334,8 @@ class Database {
         return data;
     }
 
-    endsWith(key, options = {}) {
-        let data = this.filter(i => i.ID.endsWith(key), options);
+    endsWith(key, ops = {}) {
+        let data = this.filter(i => i.ID.endsWith(key), ops);
         if (ops && ops.sort && typeof ops.sort === "string") {
             if (ops.sort.startsWith(".")) ops.sort = ops.sort.slice(1);
             ops.sort = ops.sort.split(".");
@@ -546,7 +546,7 @@ class Database {
     }
 
     toJSON(options) {
-        return this.all(options);
+        return JSON.stringify(this.all(options));
     }
 
     tables() {
