@@ -12,12 +12,12 @@ export interface BasicOptions{
     sort?: string;
 }
 
-export interface Dataset<V>{
+export interface Dataset<V = any>{
     ID: string;
     data: V;
 }
 
-export interface MultiTableDataset<V> extends Dataset<V>{
+export interface MultiTableDataset<V = any> extends Dataset<V>{
     table: string;
 }
 
@@ -33,7 +33,7 @@ export interface ExportOptions{
     format: any;
 }
 
-export class Database<V = unknown>{
+export class Database<V = any>{
 
     public name: string;
     public path: string;
@@ -48,7 +48,7 @@ export class Database<V = unknown>{
     public size(): number;
     public deleteAll(options?: BasicOptions): void;
     public createTable<T>(name: string): Database<T>;
-    public createTable(name: string): Database<unknown>;
+    public createTable(name: string): Database<any>;
     public get(key: string, options?: BasicOptions): V | null;
     public fetch(key: string, options?: BasicOptions): V | null;
     public set(key: string, value: V, options?: BasicOptions): V;
@@ -72,7 +72,7 @@ export class Database<V = unknown>{
     public includes(ey: string, options?: BasicOptions): boolean;
     public forEach(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => void, options?: BasicOptions): void;
     public map<T>(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => T, options?: BasicOptions): T[];
-    public map(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => unknown, options?: BasicOptions): unknown[];
+    public map(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => any, options?: BasicOptions): any[];
     public some(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => boolean, options?: BasicOptions): boolean;
     public every(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => boolean, options?: BasicOptions): boolean;
     public sort(fn: (a: Dataset<V>, b: Dataset<V>) => number, options?: BasicOptions): Dataset<V>[];
@@ -109,6 +109,6 @@ export class Util{
 }
 
 export function static<T>(): Database<T>;
-export function static(): Database<unknown>;
+export function static(): Database<any>;
 
 export const version: string;
