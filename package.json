@@ -1,6 +1,6 @@
 {
   "name": "@devsnowflake/quick.db",
-  "version": "1.0.2-dev",
+  "version": "1.0.0",
   "description": "The hackable quick.db",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,14 @@
   "keywords": [
     "quick.db",
     "database",
-    "sqlite"
+    "sqlite",
+    "better-sqlite3",
+    "sqlite3",
+    "db",
+    "easy",
+    "simple",
+    "fast",
+    "enmap"
   ],
   "author": "Snowflake107",
   "license": "Apache-2.0",

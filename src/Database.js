@@ -28,10 +28,12 @@ class Database {
         /**
          * The SQLite3 database.
          */
-        Object.defineProperty(this, "_database", {
-            value: options.database || new SQLite(name, options),
-            writable: false,
-            enumerable: true
+        Object.defineProperties(this, {
+            _database: {
+                value: options.database || new SQLite(name, options),
+                writable: true,
+                enumerable: false
+            },
         });
 
         this.prepareTable();
@@ -261,9 +263,9 @@ class Database {
         try { data = JSON.parse(data) } catch { }
 
         if (target && typeof data === "object") {
-            data = lodash.unset(data, target);
+            const r = lodash.unset(data, target);
+            if (!r) return false;
             data = JSON.stringify(data);
-
             this.database.prepare(`UPDATE ${table} SET json = (?) WHERE ID = (?)`).run(data, id);
 
             return true;
@@ -554,6 +556,49 @@ class Database {
             tables: Object.values(data).map(m => m.name)
         };
     }
+
+    /**
+     * Exports this db
+     * @param {object} options Export options 
+     */
+    export(options = { stringify: false, format: false, tableName: null, allTable: false }) {
+        let data = {
+            data: options.allTable ? this.allTableArray() : this.all({ table: options.tableName || this.tableName }),
+            mod: "quick.db",
+            generatedTimestamp: new Date().getTime()
+        };
+
+        if (options.stringify) data = JSON.stringify(data, null, options.format ? (typeof options.format === "number" ? options.format : "\t") : null);
+        
+        return data;
+    }
+
+    use(database) {
+        if (!database) throw new Error("Database was not provided!");
+        if (database.prototype instanceof Database || database instanceof Database) this._database = database._database;
+        if (database instanceof SQLite || database.prototype instanceof SQLite || database instanceof this._database || database.prototype instanceof this._database) this._database = database;
+
+        throw new Error("Invalid database");
+    }
+
+    /**
+     * Returns all table(s) as array.
+     */
+    allTableArray() {
+        const { tables } = this.tables();
+        let arr = [];
+
+        tables.forEach((table, index) => {
+            arr.push({
+                id: index,
+                table: table,
+                data: this.all({ table: table })
+            })
+        })
+
+        return arr;
+    }
+
 }
 
 module.exports = Database;
