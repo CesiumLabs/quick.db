@@ -84,7 +84,7 @@ export class Database<V = unknown>{
     public findIndex(fn: (value: Dataset<V>, i: number, array: Dataset<V>[]) => boolean, options?: BasicOptions): number;
     public indexOf(searchElement: Dataset<V>, fromIndex: number, options?: BasicOptions): number;
     public toString(): string;
-    public toJSON(): string;
+    public toJSON(): Dataset<V>[];
     public tables(): Tables;
     public export(options: ExportOptions): string | {
         data: MultiTableDataset<V> | Dataset<V>;
