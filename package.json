@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "The hackable quick.db",
   "main": "index.js",
+  "typings": "typings/index.d.ts",
   "scripts": {
     "test": "cd test && node index.js"
   },
