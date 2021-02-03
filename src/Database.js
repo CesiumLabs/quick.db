@@ -141,7 +141,7 @@ class Database {
         this.prepareTable(table);
 
         const data = this.database.prepare(`SELECT * FROM ${table} WHERE ID = (?)`).get(id);
-        if (!data || data?.json === "{}") return null;
+        if (!data || data.json === "{}") return null;
 
         let parsed = JSON.parse(data.json);
         try { parsed = JSON.parse(parsed) } catch {}
@@ -325,7 +325,7 @@ class Database {
 
     startsWith(key, options = {}) {        
         let data = this.filter(i => i.ID.startsWith(key), options);
-        if (typeof ops?.sort === "string") {
+        if (ops && typeof ops.sort === "string") {
             if (ops.sort.startsWith(".")) ops.sort = ops.sort.slice(1);
             ops.sort = ops.sort.split(".");
             data = lodash.sortBy(data, ops.sort).reverse();
