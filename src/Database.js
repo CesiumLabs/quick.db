@@ -36,6 +36,8 @@ class Database {
             },
         });
 
+        if (options.useWalMode === true) this.database.pragma("journal_mode = wal");
+
         this.prepareTable();
     }
 

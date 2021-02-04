@@ -11,6 +11,7 @@ declare module "@devsnowflake/quick.db" {
         path?: string;
         table?: string;
         database?: SQLite.Database;
+        useWalMode?: boolean;
     }
 
     export class Util {
