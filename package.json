@@ -2,6 +2,7 @@
   "name": "@devsnowflake/quick.db",
   "version": "1.0.1",
   "description": "The hackable quick.db",
+  "types": "typings/index.d.ts",
   "main": "index.js",
   "scripts": {
     "test": "cd test && node index.js"
