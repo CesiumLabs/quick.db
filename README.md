@@ -8,7 +8,7 @@ The hackable **[quick.db](https://npmjs.com/package/quick.db)**.
 
 ```js
 const { Database } = require("@devsnowflake/quick.db");
-const db = new Database(); // you can also specify custom path/name
+const db = new Database("./data/storage.db", { path: "./data", table: "ROOT" }); // you can also specify custom path/name
 
 // add some data
 db.set("foo", "bar");
