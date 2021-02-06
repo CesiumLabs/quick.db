@@ -71,19 +71,7 @@ class Database {
     * [Symbol.iterator]() {
         this.prepareTable(this.tableName);
 
-        const statement = this.database.prepare(`SELECT * FROM ${this.tableName} WHERE ID IS NOT NULL`);
-
-        for (const row of statement.iterate()) {
-            try {
-                let raw = JSON.parse(row.json);
-                try { raw = JSON.parse(raw) } catch { }
-
-                yield {
-                    ID: row.ID,
-                    data: raw
-                };
-            } catch { }
-        }
+        yield* this.all({ table: this.tableName });
     }
 
     eval(x) {
