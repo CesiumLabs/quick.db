@@ -13,7 +13,7 @@ let db;
 module.exports = (name, path, table) => {
     if (!db) db = new Database(name || "json.sqlite", {
         path: path || "./",
-        table: table || "json"
+        table: table || "JSON"
     });
 
     return db;

@@ -90,10 +90,22 @@ for (const item of statement.iterate()) {
 ```
 
 ## Static usage
-This db behaves like quick.db where you cannot specify custom path/default table while creating your database.
+This db behaves like quick.db.
+
+### Basic Example
 
 ```js
 const db = require("@devsnowflake/quick.db").static();
+
+db.set("foo", "bar");
+
+console.log(db.get("foo"));
+```
+
+### Or custom name
+
+```js
+const db = require("@devsnowflake/quick.db").static("./json.db");
 
 db.set("foo", "bar");
 
