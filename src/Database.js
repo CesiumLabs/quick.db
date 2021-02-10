@@ -589,6 +589,20 @@ class Database {
         return arr;
     }
 
+    /**
+     * Similar to db.all() but flattens data of all tables into single array.
+     */
+    flat() {
+        const { tables } = this.tables();
+
+        const data = [];
+        for (const table of tables) {
+            data.push(this.all({ table }));
+        }
+
+        return Array.prototype.flat.call(data);
+    }
+
 }
 
 module.exports = Database;

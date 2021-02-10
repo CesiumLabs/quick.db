@@ -94,9 +94,10 @@ declare module "@devsnowflake/quick.db" {
         
         public use(database: SQLite.Database | Database): void;
         public allTableArray(): { id: number; table: string; data: DataSet[] }[];
+        public flat(): DataSet[];
     }
 
-    export function static(): Database;
+    export function static(name?: string, path?: string, table?: string): Database;
 
     export const version: string;
 }

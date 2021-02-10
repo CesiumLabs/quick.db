@@ -3,6 +3,17 @@ The hackable **[quick.db](https://npmjs.com/package/quick.db)**.
 
 > **You can easily switch between this library and quick.db if you are using `json.sqlite` file as database.**
 
+# Features
+- Beginner friendly
+- Custom database file
+- More control over your database
+- More utility methods
+- Simple and easy to use
+- Based on original quick.db
+- Key value based
+- Easy to migrate from/to quick.db
+- ~~Definitely not for professional people~~
+
 # Examples
 ## Getting Started
 
@@ -90,58 +101,152 @@ console.log(db.get("foo"));
 ```
 
 # Quick.db API
-- db.all()
-- db.fetchAll()
-- db.add()
-- db.delete()
-- db.fetch()
-- db.get()
-- db.set()
-- db.subtract()
-- db.has()
-- db.type()
-- db.push()
+## db.all(options)
+This method returns currently used table (or specified table) as array.
+
+## db.fetchAll(options)
+Alias of `db.all()`.
+
+## db.add(key, number, options)
+This method can be used for addition (numbers).
+
+## db.delete(key, options)
+This method can be used to remove specific data with its key.
+
+## db.fetch(key, options)
+This method can be used to get data from the database.
+
+## db.get(key, options)
+Alias of `db.fetch`.
+
+## db.set(key, value, options)
+This method can be used to update existing data or add new data.
+
+## db.subtract(key, number, options)
+Similar to `db.add`, this method can be used for subtraction.
+
+## db.has(key, options)
+Returns true if it finds the requested key in the database.
+
+## db.type(key, options)
+Returns data type of the value assigned to this key.
+
+## db.push(key, valueOrValues)
+This method can be used to push the data (Similar to `Array.prototype.push`).
 
 # Non-quick.db API
 ## Methods
-- db.find()
-- db.some()
-- db.map()
-- db.flatMap()
-- db.forEach()
-- db.every()
-- db.findIndex()
-- db.indexOf()
-- db.reduce()
-- db.reduceRight()
-- db.sort()
-- db.tables()
-- db.createTable()
-- db.drop()
-- db.keyArray()
-- db.valueArray()
-- db.array()
-- db.divide()
-- db.multiply()
-- db.modulus()
-- db.startsWith()
-- db.endsWith()
-- db.pull()
-- db.deleteAll()
-- db.size()
-- db.eval()
-- db.prepareTable()
-- db.export()
-- db.use()
-- db.allTableArray()
+### db.find(fn, options)
+Similar to `Array.prototype.find`.
+
+### db.some(fn, options)
+Similar to `Array.prototype.some`.
+
+### db.map(fn, options)
+Similar to `Array.prototype.map`.
+
+### db.flatMap(fn, options)
+Similar to `Array.prototype.flatMap`.
+
+### db.forEach(fn, options)
+Similar to `Array.prototype.forEach`.
+
+### db.every(fn, options)
+Similar to `Array.prototype.every`.
+
+### db.findIndex(fn, options)
+Similar to `Array.prototype.findIndex`.
+
+### db.indexOf(searchElement, fromIndex)
+Similar to `Array.prototype.indexOf`.
+
+### db.reduce(fn, options)
+Similar to `Array.prototype.reduce`.
+
+### db.reduceRight(fn, options)
+Similar to `Array.prototype.reduceRight`.
+
+### db.sort(fn, options)
+Similar to `Array.prototype.sort`.
+
+### db.tables()
+Returns all table name.
+
+### db.createTable(name)
+If not available, creates a new table with the given name otherwise uses existing table and returns new database with that table as root table.
+
+### db.drop(options)
+Drops current table or specified table.
+
+### db.keyArray(options)
+Returns array of keys.
+
+### db.valueArray(options)
+Returns array of values.
+
+### db.array()
+Returns array of this table.
+
+### db.divide(key, number, options)
+Division for existing data with the given number.
+
+### db.multiply(key, number, options)
+Multiplication for existing data with the given number.
+
+### db.modulus(key, number, options)
+Modulus for existing data with the given number.
+
+### db.startsWith(key, options)
+Similar to `db.all` but easier method to sort by key.
+
+### db.endsWith(key, options)
+Similar to `db.all` but easier method to sort by key.
+
+### db.pull(key, itemOrItems, options)
+Used to pull data from the array stored inside the database. (Reverse `.push`)
+
+### db.deleteAll(options)
+Deletes all data from the specified table.
+
+### db.size()
+File size of this db.
+
+### db.eval(x)
+Allows you to evaluate anything inside `Database` class using `this`.
+
+### db.prepareTable(name)
+A method that just creates table rather than returning new database.
+
+### db.export(options)
+Exports database into json data.
+
+### db.use(database)
+This method updates current database manager with a new one. Database parameter can either be `Database` instance or `BetterSQLite3.Database` instance.
+
+### db.allTableArray()
+Returns array of all tables with their table name.
+
+### db.flat()
+This method is similar to `db.allTableArray` but returns whole data as single array (like `db.all`).
 
 ## Properties
-- db.database
-- db.rowCount
-- db.path
-- db.name
-- db.tableName
-- db.length
+### db.database
+Current database manager.
+
+### db.rowCount
+Number of rows in this table.
+
+### db.path
+Database path.
+
+### db.name
+Database file name.
+
+### db.tableName
+Root table name used while instantiating this database.
+
+### db.length
+Alias of `db.rowCount`.
 
 # Join our Discord Server
 [![](https://i.imgur.com/f6hNUfc.png)](https://discord.gg/2SUybzb)

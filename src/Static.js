@@ -5,12 +5,15 @@ let db;
 
 /**
  * Satic quick.db
+ * @param {string} [name] Database name
+ * @param {string} [path] Database path
+ * @param {string} [table] Database table name
  * @returns {Database}
  */
-module.exports = () => {
-    if (!db) db = new Database("json.sqlite", {
-        path: "./",
-        table: "json"
+module.exports = (name, path, table) => {
+    if (!db) db = new Database(name || "json.sqlite", {
+        path: path || "./",
+        table: table || "json"
     });
 
     return db;
